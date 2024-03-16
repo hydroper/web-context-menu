@@ -6,6 +6,10 @@ export type ShortcutCombinationFunction = (action: string) => string;
 
 export type ContextMenuOptions = {
     /**
+     * Indicates a top menu bar to be excluded from the context menu modal.
+     */
+    menuBar?: HTMLElement,
+    /**
      * List containing either `ContextMenuItem` or `ContextMenuSeparator`.
      */
     items: Object[],
@@ -37,9 +41,11 @@ export class ContextMenu {
         });
         document.body.appendChild(this.modal);
 
-        const headerNavigationBar = document.querySelector("header > #navigationBar")!;
-        const r = headerNavigationBar.getBoundingClientRect();
-        this.modal.style.top = `${r.y + r.height}px`;
+        // Exclude menu bar
+        if (options.menuBar !== undefined) {
+            const r = options.menuBar.getBoundingClientRect();
+            this.modal.style.top = `${r.y + r.height}px`;
+        }
 
         this.handleEscapeKey = (evt: KeyboardEvent): void => {
             if (evt.key == "Escape") {

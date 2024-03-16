@@ -1,6 +1,6 @@
 {
   "name": "com.hydroper.webcontextmenu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fully skinnable context menu library for web applications.",
   "main": "src/index.ts",
   "module": "src/index.ts",
